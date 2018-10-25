@@ -33,6 +33,9 @@ Observer.prototype = {
                 }
                 val = newVal;
                 // 新的值是object的话，进行监听
+                
+                //可以得出在data的对象属性里，设置属性，可以创建双向绑定数据
+                //直接在vm中写入，没有用，在data写入，也不会走defineProperty
                 childObj = observe(newVal);
                 // 通知订阅者
                 dep.notify();

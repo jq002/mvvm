@@ -122,10 +122,11 @@ var compileUtil = {
 
     bind: function(node, vm, exp, dir) {
         var updaterFn = updater[dir + 'Updater'];
-
+        //初始化视图  
         updaterFn && updaterFn(node, this._getVMVal(vm, exp));
-
+        //生成订阅者                
         new Watcher(vm, exp, function(value, oldValue) {
+            //dep通知，回调的方法，最终更新视图
             updaterFn && updaterFn(node, value, oldValue);
         });
     },
